@@ -8,7 +8,7 @@
 
    <Input
       value="{/recipient/name}"
-      description="Hello {/recipient/name}"
+      description="Olá {/recipient/name}"
       valueLiveUpdate="true"
       width="60%"/>
 </mvc:View>
