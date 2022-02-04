@@ -13,6 +13,7 @@ sap.ui.define([
             var sMsg = oBundle.getText("helloMsg", [sRecipient]);
             MessageToast.show(sMsg);
          },
+
 		onOpenDialog : function () {
 
 			//cria uma caixa de dialogos
@@ -24,6 +25,10 @@ sap.ui.define([
 			this.pDialog.then(function(oDialog) {
 				oDialog.open();
 			});
+		},
+
+        onCloseDialog : function () {
+			this.byId("helloDialog").close();
 		}
 
 	});
