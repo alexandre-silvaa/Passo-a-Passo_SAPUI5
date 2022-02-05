@@ -1,37 +1,37 @@
 sap.ui.define([
-    "sap/ui/core/UIComponent",
-    "sap/ui/model/json/JSONModel",
-    "sap/ui/model/resource/ResourceModel"
- ], function (UIComponent, JSONModel, ResourceModel) {
-    "use strict";
-    return UIComponent.extend("sap.ui.demo.walkthrough.Component", {
-        metadata : {
-            interfaces: ["sap.ui.core.IAsyncContentCreation"],
-            manifest: "json"
-      },
-       init : function () {
-          // call the init function of the parent
-          UIComponent.prototype.init.apply(this, arguments);
+	"sap/ui/core/UIComponent",
+	"sap/ui/model/json/JSONModel",
+	"sap/ui/Device"
+], function (UIComponent, JSONModel, Device) {
+	"use strict";
+	return UIComponent.extend("sap.ui.demo.walkthrough.Component", {
+		metadata: {
+			interfaces: ["sap.ui.core.IAsyncContentCreation"],
+			manifest: "json"
+		},
+		init: function () {
+			// call the init function of the parent
+			UIComponent.prototype.init.apply(this, arguments);
 
-          // set data model
-          var oData = {
-             recipient : {
-                name : "Mundo"
-             }
-          };
-          var oModel = new JSONModel(oData);
-          this.setModel(oModel);
+			// set data model
+			var oData = {
+				recipient: {
+					name: "World"
+				}
+			};
+			var oModel = new JSONModel(oData);
+			this.setModel(oModel);
+			// disable batch grouping for v2 API of the northwind service
+			this.getModel("invoice").setUseBatch(false);
 
-        // create the views based on the url/hash
-		   this.getRouter().initialize();
-          
-          // set i18n model
-          var i18nModel = new ResourceModel({
-             bundleName: "sap.ui.demo.walkthrough.i18n.i18n"
+			// set device model
+			var oDeviceModel = new JSONModel(Device);
+			oDeviceModel.setDefaultBindingMode("OneWay");
+			this.setModel(oDeviceModel, "device");
 
-          });
-          this.setModel(i18nModel, "i18n");
-       }
-    });
- });
- 
+			// create the views based on the url/hash
+			this.getRouter().initialize();
+		}
+
+	});
+});
