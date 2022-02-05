@@ -32,12 +32,14 @@
                }
             }"
             numberUnit="{view>/currency}"
-            numberState="{= ${invoice>ExtendedPrice} > 50 ? 'Error' : 'Success' }">
-                  <firstStatus>
-                     <ObjectStatus text="{
-                        path: 'invoice>Status',
-                        formatter: '.formatter.statusText'
-                     }"/>
+            numberState="{= ${invoice>ExtendedPrice} > 50 ? 'Error' : 'Success' }"
+            type="Navigation"
+				press="onPress">
+            <firstStatus>
+               <ObjectStatus text="{
+                  path: 'invoice>Status',
+                  formatter: '.formatter.statusText'
+                  }"/>
 				</firstStatus>
 			</ObjectListItem>
       
